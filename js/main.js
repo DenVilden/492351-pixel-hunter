@@ -67,9 +67,7 @@ function renderArrows() {
     select(current - 1);
   });
 
-  document.querySelector(`body`).appendChild(div);
-
-  return div;
+  return document.querySelector(`body`).appendChild(div);
 }
 
 renderArrows();
