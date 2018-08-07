@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 const del = require(`del`);
 const gulp = require(`gulp`);
@@ -14,64 +14,73 @@ const imagemin = require(`gulp-imagemin`);
 const svgstore = require(`gulp-svgstore`);
 
 gulp.task(`style`, () => {
-  return gulp.src(`sass/style.scss`).
-    pipe(plumber()).
-    pipe(sass()).
-    pipe(postcss([
-      autoprefixer({
-        browsers: [
-          `last 1 version`,
-          `last 2 Chrome versions`,
-          `last 2 Firefox versions`,
-          `last 2 Opera versions`,
-          `last 2 Edge versions`
-        ]
-      }),
-      mqpacker({sort: true})
-    ])).
-    pipe(gulp.dest(`build/css`)).
-    pipe(server.stream()).
-    pipe(minify()).
-    pipe(rename(`style.min.css`)).
-    pipe(gulp.dest(`build/css`));
+  return gulp
+    .src(`sass/style.scss`)
+    .pipe(plumber())
+    .pipe(sass())
+    .pipe(
+        postcss([
+          autoprefixer({
+            browsers: [
+              `last 1 version`,
+              `last 2 Chrome versions`,
+              `last 2 Firefox versions`,
+              `last 2 Opera versions`,
+              `last 2 Edge versions`
+            ]
+          }),
+          mqpacker({sort: true})
+        ])
+    )
+    .pipe(gulp.dest(`build/css`))
+    .pipe(server.stream())
+    .pipe(minify())
+    .pipe(rename(`style.min.css`))
+    .pipe(gulp.dest(`build/css`));
 });
 
 gulp.task(`sprite`, () => {
-  return gulp.src(`img/sprite/*.svg`)
-  .pipe(svgstore({
-    inlineSvg: true
-  }))
-  .pipe(rename(`sprite.svg`))
-  .pipe(gulp.dest(`build/img`));
+  return gulp
+    .src(`img/sprite/*.svg`)
+    .pipe(
+        svgstore({
+          inlineSvg: true
+        })
+    )
+    .pipe(rename(`sprite.svg`))
+    .pipe(gulp.dest(`build/img`));
 });
 
 gulp.task(`scripts`, () => {
-  return gulp.src(`js/**/*.js`).
-    pipe(plumber()).
-    pipe(gulp.dest(`build/js/`));
+  return gulp
+    .src(`js/**/*.js`)
+    .pipe(plumber())
+    .pipe(gulp.dest(`build/js/`));
 });
 
 gulp.task(`imagemin`, [`copy`], () => {
-  return gulp.src(`build/img/**/*.{jpg,png,gif}`).
-    pipe(imagemin([
-      imagemin.optipng({optimizationLevel: 3}),
-      imagemin.jpegtran({progressive: true})
-    ])).
-    pipe(gulp.dest(`build/img`));
+  return gulp
+    .src(`build/img/**/*.{jpg,png,gif}`)
+    .pipe(
+        imagemin([
+          imagemin.optipng({optimizationLevel: 3}),
+          imagemin.jpegtran({progressive: true})
+        ])
+    )
+    .pipe(gulp.dest(`build/img`));
 });
 
 gulp.task(`copy-html`, () => {
-  return gulp.src(`*.{html,ico}`).
-    pipe(gulp.dest(`build`)).
-    pipe(server.stream());
+  return gulp
+    .src(`*.{html,ico}`)
+    .pipe(gulp.dest(`build`))
+    .pipe(server.stream());
 });
 
 gulp.task(`copy`, [`copy-html`, `scripts`, `style`, `sprite`], () => {
-  return gulp.src([
-    `fonts/**/*.{woff,woff2}`,
-    `img/*.*`
-  ], {base: `.`}).
-    pipe(gulp.dest(`build`));
+  return gulp
+    .src([`fonts/**/*.{woff,woff2}`, `img/*.*`], {base: `.`})
+    .pipe(gulp.dest(`build`));
 });
 
 gulp.task(`clean`, () => {
@@ -109,5 +118,4 @@ gulp.task(`build`, [`assemble`], () => {
   gulp.start(`imagemin`);
 });
 
-gulp.task(`test`, () => {
-});
+gulp.task(`test`, () => {});
