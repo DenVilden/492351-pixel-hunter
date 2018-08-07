@@ -50,6 +50,7 @@ function renderArrows() {
 
   const rightButton = document.createElement(`button`);
   rightButton.setAttribute(`class`, `arrows__btn`);
+  rightButton.textContent = `<-`;
   rightButton.style.background = `none`;
   rightButton.style.border = `2px solid black`;
   rightButton.style.padding = `5px 20px`;
@@ -60,6 +61,7 @@ function renderArrows() {
   });
 
   const leftButton = rightButton.cloneNode(true);
+  leftButton.textContent = `->`;
   div.appendChild(leftButton);
   leftButton.addEventListener(`click`, () => {
     select(current - 1);
