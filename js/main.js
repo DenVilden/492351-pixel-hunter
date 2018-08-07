@@ -15,6 +15,7 @@ function selectSlide(element) {
 const screens = Array.from(document.querySelectorAll(`template`)).map(
     (it) => it.content
 );
+
 // Переключает экраны
 let current = 0;
 function select(index) {
