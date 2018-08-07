@@ -15,14 +15,12 @@ const selectSlide = (element) => {
 const screens = Array.from(document.querySelectorAll(`template`)).map(
     (it) => it.content
 );
-screens.shift();
-screens.splice(-3);
 
 // Переключает экраны
 let current = 0;
 const select = (index) => {
-  index = index < 0 ? 0 : index;
-  index = index >= screens.length ? screens.length - 1 : index;
+  index = index < 1 ? 1 : index;
+  index = index >= screens.length - 3 ? screens.length - 4 : index;
   current = index;
   selectSlide(screens[current]);
 };
