@@ -11,18 +11,24 @@ function selectSlide(element) {
   mainElement.appendChild(element.cloneNode(true));
 }
 
-// Собирает все экраны в массив
-const screens = Array.from(document.querySelectorAll(`template`)).map(
-    (it) => it.content
-);
+// Фильтрует и собирает все экраны в массив
+function screensFilter() {
+  const screens = Array.from(document.querySelectorAll(`template`)).map(
+      (it) => it.content
+  );
+
+  screens.splice(-2);
+
+  return screens;
+}
 
 // Переключает экраны
 let current = 0;
 function select(index) {
-  index = index < 0 ? screens.length - 1 : index;
-  index = index >= screens.length ? 0 : index;
+  index = index < 0 ? 0 : index;
+  index = index >= screensFilter().length ? screensFilter().length - 1 : index;
   current = index;
-  selectSlide(screens[current]);
+  selectSlide(screensFilter()[current]);
 }
 
 // Добавляет переключение с клавиатуры
@@ -43,31 +49,34 @@ select(0);
 function renderArrows() {
   const div = document.createElement(`div`);
   div.setAttribute(`class`, `arrows__wrap`);
-  div.style.position = `absolute`;
-  div.style.top = `95px`;
-  div.style.left = `50%`;
-  div.style.marginLeft = `-56px`;
 
-  const rightButton = document.createElement(`button`);
-  rightButton.setAttribute(`class`, `arrows__btn`);
-  rightButton.textContent = `<-`;
-  rightButton.style.background = `none`;
-  rightButton.style.border = `2px solid black`;
-  rightButton.style.padding = `5px 20px`;
-
-  div.appendChild(rightButton);
-  rightButton.addEventListener(`click`, () => {
-    select(current + 1);
-  });
-
-  const leftButton = rightButton.cloneNode(true);
-  leftButton.textContent = `->`;
-  div.appendChild(leftButton);
-  leftButton.addEventListener(`click`, () => {
-    select(current - 1);
-  });
+  div.innerHTML = `
+  <style>
+    .arrows__wrap {
+      position: absolute;
+      top: 95px;
+      left: 50%;
+      margin-left: -56px;
+    }
+    .arrows__btn {
+      background: none;
+      border: 2px solid black;
+      padding: 5px 20px;
+    }
+  </style>
+  <button class="arrows__btn"><-</button>
+  <button class="arrows__btn">-></button>
+`;
 
   return document.querySelector(`body`).appendChild(div);
 }
 
 renderArrows();
+
+document.querySelectorAll(`.arrows__btn`)[0].addEventListener(`click`, () => {
+  select(current + 1);
+});
+
+document.querySelectorAll(`.arrows__btn`)[1].addEventListener(`click`, () => {
+  select(current - 1);
+});
