@@ -1,7 +1,7 @@
 # Личный проект «Пиксель хантер» [![Build status][travis-image]][travis-url]
 
-* Студент: [Denis Tolmachev](https://up.htmlacademy.ru/ecmascript/6/user/492351).
-* Наставник: `Неизвестно`.
+- Студент: [Denis Tolmachev](https://up.htmlacademy.ru/ecmascript/6/user/492351).
+- Наставник: [Сергей Вохмянин](https://up.htmlacademy.ru/ecmascript/6/user/530823).
 
 ---
 
