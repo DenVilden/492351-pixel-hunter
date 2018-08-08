@@ -3,4 +3,5 @@ env:
   browser: true
   commonjs: true
 
-extends: ['htmlacademy/es6', 'prettier']
+extends: 'htmlacademy/es6'
+

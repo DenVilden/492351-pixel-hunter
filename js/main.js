@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 const LEFT_ARROW = 37;
 const RIGHT_ARROW = 39;
@@ -76,10 +76,6 @@ renderArrows();
 // Кнопки навигации
 const navigationArrows = document.querySelectorAll(`.arrows__btn`);
 
-navigationArrows[0].addEventListener(`click`, () => {
-  select(current - 1);
-});
+navigationArrows[0].addEventListener(`click`, () => select(current - 1));
 
-navigationArrows[1].addEventListener(`click`, () => {
-  select(current + 1);
-});
+navigationArrows[1].addEventListener(`click`, () => select(current + 1));
