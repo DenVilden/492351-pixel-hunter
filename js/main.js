@@ -12,15 +12,21 @@ const selectSlide = (element) => {
 };
 
 // Фильтрует и собирает все экраны в массив
-const screens = Array.from(document.querySelectorAll(`template`)).map(
-  (it) => it.content
-);
+const screens = [
+  `intro`,
+  `greeting`,
+  `rules`,
+  `game-1`,
+  `game-2`,
+  `game-3`,
+  `stats`
+].map((it) => document.querySelector(`template#${it}`).content);
 
 // Переключает экраны
 let current = 0;
 const select = (index) => {
-  index = index < 1 ? 1 : index;
-  index = index >= screens.length - 3 ? screens.length - 4 : index;
+  index = index < 0 ? 0 : index;
+  index = index >= screens.length ? screens.length - 1 : index;
   current = index;
   selectSlide(screens[current]);
 };
@@ -67,10 +73,13 @@ const renderArrows = () => {
 
 renderArrows();
 
-document.querySelectorAll(`.arrows__btn`)[0].addEventListener(`click`, () => {
+// Кнопки навигации
+const navigationArrows = document.querySelectorAll(`.arrows__btn`);
+
+navigationArrows[0].addEventListener(`click`, () => {
   select(current - 1);
 });
 
-document.querySelectorAll(`.arrows__btn`)[1].addEventListener(`click`, () => {
+navigationArrows[1].addEventListener(`click`, () => {
   select(current + 1);
 });
