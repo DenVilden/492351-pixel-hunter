@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 const LEFT_ARROW = 37;
 const RIGHT_ARROW = 39;
@@ -13,7 +13,7 @@ const selectSlide = (element) => {
 
 // Фильтрует и собирает все экраны в массив
 const screens = Array.from(document.querySelectorAll(`template`)).map(
-    (it) => it.content
+  (it) => it.content
 );
 
 // Переключает экраны
@@ -37,7 +37,7 @@ document.addEventListener(`keydown`, (evt) => {
   }
 });
 
-select(0);
+select(1);
 
 // Добавляет стрелки навигации
 const renderArrows = () => {
