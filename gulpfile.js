@@ -83,9 +83,7 @@ gulp.task(`copy`, [`copy-html`, `scripts`, `style`, `sprite`], () => {
     .pipe(gulp.dest(`build`));
 });
 
-gulp.task(`clean`, () => {
-  return del(`build`);
-});
+gulp.task(`clean`, () => del(`build`));
 
 gulp.task(`js-watch`, [`scripts`], (done) => {
   server.reload();
@@ -110,12 +108,8 @@ gulp.task(`serve`, [`assemble`], () => {
   gulp.watch(`js/**/*.js`, [`js-watch`]);
 });
 
-gulp.task(`assemble`, [`clean`], () => {
-  gulp.start(`copy`, `style`);
-});
+gulp.task(`assemble`, [`clean`], () => gulp.start(`copy`, `style`));
 
-gulp.task(`build`, [`assemble`], () => {
-  gulp.start(`imagemin`);
-});
+gulp.task(`build`, [`assemble`], () => gulp.start(`imagemin`));
 
 gulp.task(`test`, () => {});
