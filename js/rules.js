@@ -41,9 +41,7 @@ const backButton = rulesScreen.querySelector(`.back`);
 
 rulesButton.addEventListener(`click`, () => selectSlide(gameOneScreen));
 
-backButton.addEventListener(`click`, () => {
-  selectSlide(greetingScreen);
-});
+backButton.addEventListener(`click`, () => selectSlide(greetingScreen));
 
 // Отключает кнопку если input пустой
 rulesInput.addEventListener(

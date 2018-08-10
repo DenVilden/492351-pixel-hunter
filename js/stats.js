@@ -127,8 +127,6 @@ const statsScreen = render(template);
 
 const backButton = statsScreen.querySelector(`.back`);
 
-backButton.addEventListener(`click`, () => {
-  selectSlide(greetingScreen);
-});
+backButton.addEventListener(`click`, () => selectSlide(greetingScreen));
 
 export default statsScreen;

@@ -53,9 +53,7 @@ const gameThreeScreen = render(template);
 const gameOption = gameThreeScreen.querySelectorAll(`.game__option`);
 const backButton = gameThreeScreen.querySelector(`.back`);
 
-backButton.addEventListener(`click`, () => {
-  selectSlide(greetingScreen);
-});
+backButton.addEventListener(`click`, () => selectSlide(greetingScreen));
 
 // Меняет экран при выборе ответа
 gameOption.forEach((input) => {

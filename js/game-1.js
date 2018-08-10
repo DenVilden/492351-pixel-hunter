@@ -66,9 +66,7 @@ const gameOneScreen = render(template);
 const gameAnswer = gameOneScreen.querySelectorAll(`.game__answer input`);
 const backButton = gameOneScreen.querySelector(`.back`);
 
-backButton.addEventListener(`click`, () => {
-  selectSlide(greetingScreen);
-});
+backButton.addEventListener(`click`, () => selectSlide(greetingScreen));
 
 // Меняет экран если выбраны оба ответа
 gameAnswer.forEach((input) => {
