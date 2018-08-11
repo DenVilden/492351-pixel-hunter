@@ -59,10 +59,7 @@ backButton.addEventListener(`click`, () => selectSlide(greetingScreen));
 
 // Меняет экран при выборе ответа
 gameAnswer.forEach((input) => {
-  input.addEventListener(
-      `input`,
-      () => (input.checked ? selectSlide(gameThreeScreen) : null)
-  );
+  input.addEventListener(`input`, () => selectSlide(gameThreeScreen));
 });
 
 export default gameTwoScreen;
