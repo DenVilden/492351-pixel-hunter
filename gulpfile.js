@@ -1,5 +1,3 @@
-"use strict";
-
 const del = require(`del`);
 const gulp = require(`gulp`);
 const sass = require(`gulp-sass`);
@@ -12,6 +10,8 @@ const minify = require(`gulp-csso`);
 const rename = require(`gulp-rename`);
 const imagemin = require(`gulp-imagemin`);
 const svgstore = require(`gulp-svgstore`);
+const rollup = require(`gulp-better-rollup`);
+const sourcemaps = require(`gulp-sourcemaps`);
 
 gulp.task(`style`, () => {
   return gulp
@@ -53,8 +53,11 @@ gulp.task(`sprite`, () => {
 
 gulp.task(`scripts`, () => {
   return gulp
-    .src(`js/**/*.js`)
+    .src(`js/main.js`)
     .pipe(plumber())
+    .pipe(sourcemaps.init())
+    .pipe(rollup({}, `iife`))
+    .pipe(sourcemaps.write(``))
     .pipe(gulp.dest(`build/js/`));
 });
 
@@ -83,9 +86,7 @@ gulp.task(`copy`, [`copy-html`, `scripts`, `style`, `sprite`], () => {
     .pipe(gulp.dest(`build`));
 });
 
-gulp.task(`clean`, () => {
-  return del(`build`);
-});
+gulp.task(`clean`, () => del(`build`));
 
 gulp.task(`js-watch`, [`scripts`], (done) => {
   server.reload();
@@ -110,12 +111,8 @@ gulp.task(`serve`, [`assemble`], () => {
   gulp.watch(`js/**/*.js`, [`js-watch`]);
 });
 
-gulp.task(`assemble`, [`clean`], () => {
-  gulp.start(`copy`, `style`);
-});
+gulp.task(`assemble`, [`clean`], () => gulp.start(`copy`, `style`));
 
-gulp.task(`build`, [`assemble`], () => {
-  gulp.start(`imagemin`);
-});
+gulp.task(`build`, [`assemble`], () => gulp.start(`imagemin`));
 
 gulp.task(`test`, () => {});
