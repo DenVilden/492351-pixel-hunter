@@ -73,7 +73,7 @@ gameAnswer.forEach((input) => {
   input.addEventListener(`input`, () => {
     const radio = gameOneScreen.querySelectorAll(`.game__answer input:checked`);
 
-    return radio.length > 1 ? selectSlide(gameTwoScreen) : null;
+    return radio.length === 2 ? selectSlide(gameTwoScreen) : null;
   });
 });
 
