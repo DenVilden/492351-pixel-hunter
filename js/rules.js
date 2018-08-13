@@ -45,7 +45,7 @@ backButton.addEventListener(`click`, () => selectSlide(greetingScreen));
 
 // Отключает кнопку если input пустой
 rulesInput.addEventListener(`input`, (evt) => {
-  return (rulesButton.disabled = evt.target.value.length === 0);
+  rulesButton.disabled = evt.target.value.length === 0;
 });
 
 export default rulesScreen;
