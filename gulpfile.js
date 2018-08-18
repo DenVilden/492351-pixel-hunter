@@ -32,11 +32,10 @@ gulp.task(`style`, () => {
           mqpacker({sort: true})
         ])
     )
-    .pipe(gulp.dest(`build/css`))
-    .pipe(server.stream())
     .pipe(minify())
     .pipe(rename(`style.min.css`))
-    .pipe(gulp.dest(`build/css`));
+    .pipe(gulp.dest(`build/css`))
+    .pipe(server.stream());
 });
 
 gulp.task(`sprite`, () => {
@@ -56,7 +55,7 @@ gulp.task(`scripts`, () => {
     .src(`js/main.js`)
     .pipe(plumber())
     .pipe(sourcemaps.init())
-    .pipe(rollup({}, `iife`))
+    .pipe(rollup(`iife`))
     .pipe(sourcemaps.write())
     .pipe(gulp.dest(`build/js`));
 });
