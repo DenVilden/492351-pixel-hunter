@@ -57,8 +57,8 @@ gulp.task(`scripts`, () => {
     .pipe(plumber())
     .pipe(sourcemaps.init())
     .pipe(rollup({}, `iife`))
-    .pipe(sourcemaps.write(``))
-    .pipe(gulp.dest(`build/js/`));
+    .pipe(sourcemaps.write())
+    .pipe(gulp.dest(`build/js`));
 });
 
 gulp.task(`imagemin`, [`copy`], () => {
