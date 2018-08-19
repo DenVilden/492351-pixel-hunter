@@ -32,7 +32,7 @@ gulp.task(`style`, () => {
           mqpacker({sort: true})
         ])
     )
-    .pipe(minify())
+    .pipe(minify({comments: false}))
     .pipe(rename(`style.min.css`))
     .pipe(gulp.dest(`build/css`))
     .pipe(server.stream());
