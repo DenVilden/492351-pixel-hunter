@@ -29,21 +29,18 @@ export const data = {
       return -1;
     }
     // Возвращает очки + очки за жизни
-    return (
-      answers.reduce((score, answer) => {
-        if (answer.completed) {
-          score += this.SCORE.RIGHT_ANSWER;
-        }
-        if (answer.completed && answer.timeSpent < this.SCORE.QUICK_ANSWER) {
-          score += this.SCORE.BONUS_ANSWER;
-        }
-        if (answer.completed && answer.timeSpent > this.SCORE.SLOW_ANSWER) {
-          score -= this.SCORE.BONUS_ANSWER;
-        }
-        return score;
-      }, 0) +
-      this.setLives(lives) * this.SCORE.ONE_LIFE_SCORE
-    );
+    return answers.reduce((score, answer) => {
+      if (answer.completed) {
+        score += this.SCORE.RIGHT_ANSWER;
+      }
+      if (answer.completed && answer.timeSpent < this.SCORE.QUICK_ANSWER) {
+        score += this.SCORE.BONUS_ANSWER;
+      }
+      if (answer.completed && answer.timeSpent > this.SCORE.SLOW_ANSWER) {
+        score -= this.SCORE.BONUS_ANSWER;
+      }
+      return score;
+    }, this.setLives(lives) * this.SCORE.ONE_LIFE_SCORE);
   },
   changeLevel(level) {
     if (typeof level !== `number`) {
