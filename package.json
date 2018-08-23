@@ -8,10 +8,10 @@
     "stylelint": "stylelint 'sass/**/*.scss' --syntax scss",
     "build": "gulp build",
     "start": "gulp serve",
-    "test": "npm run eslint && npm run stylelint && gulp test"
+    "test": "npm run eslint && gulp test"
   },
   "devDependencies": {
-    "autoprefixer": "9.1.2",
+    "autoprefixer": "9.1.3",
     "browser-sync": "2.24.6",
     "chai": "4.1.2",
     "css-mqpacker": "7.0.0",
