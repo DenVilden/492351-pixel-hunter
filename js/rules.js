@@ -1,6 +1,7 @@
 import {render, selectSlide} from "./util";
-import gameOneScreen from "./game-1";
+import screenTemplate from "./screen";
 import greetingScreen from "./greeting";
+import gameA from "./data/game";
 
 const template = `
     <header class="header">
@@ -39,7 +40,7 @@ const rulesButton = rulesScreen.querySelector(`.rules__button`);
 const rulesInput = rulesScreen.querySelector(`.rules__input`);
 const backButton = rulesScreen.querySelector(`.back`);
 
-rulesButton.addEventListener(`click`, () => selectSlide(gameOneScreen));
+rulesButton.addEventListener(`click`, () => selectSlide(screenTemplate(gameA)));
 
 backButton.addEventListener(`click`, () => selectSlide(greetingScreen));
 
