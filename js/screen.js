@@ -1,42 +1,45 @@
-import {render, selectSlide} from "./util";
-import screenHeader from "./screen-header";
-import {data} from "./data/game-data";
-import screenStats from "./screen-stats";
+import data from "./data/game-data";
+import game from "./data/game";
+import statsScreen from "./stats";
+import gameOneScreen from "./game-1";
+import gameTwoScreen from "./game-2";
+import gameThreeScreen from "./game-3";
 
-const screenTemplate = (level) => {
-  const option1 = `
-          <img src=${
-  level[0].answers[0].src
-} alt="Option 1" width="468" height="458">
-          <label class="game__answer game__answer--photo">
-            <input class="visually-hidden" name="question1" type="radio" value="photo">
-            <span>Фото</span>
-          </label>
-          <label class="game__answer game__answer--paint">
-            <input class="visually-hidden" name="question1" type="radio" value="paint">
-            <span>Рисунок</span>
-          </label>
-  `;
+export const screenTemplate = (state) => {
+  // Show results if no more lives
+  if (state.lives === 0) {
+    return statsScreen(state);
+  }
 
-  const option2 = `
-          <img src="http://placehold.it/304x455" alt="Option 1" width="304" height="455">
-  `;
+  // Show results if no more questions
+  if (state.level === game.length) {
+    return statsScreen(state);
+  }
 
-  const game = `
-    ${screenHeader(data)}
-    <section class="game">
-      <p class="game__task">${level[0].question}</p>
-      <form class="game__content">
-        <div class="game__option">${option1}</div>
-        <div class="game__option">${option1}</div>
-      </form>
-      ${screenStats}
-    </section>
-`;
+  if (game[state.level].type === `gameOne`) {
+    return gameOneScreen(state);
+  }
 
-  const gameI = render(game);
+  if (game[state.level].type === `gameTwo`) {
+    return gameTwoScreen(state);
+  }
 
-  return gameI;
+  if (game[state.level].type === `gameThree`) {
+    return gameThreeScreen(state);
+  }
+
+  return null;
 };
 
-export default screenTemplate;
+export const updateState = (
+    state,
+    live = 0,
+    completed = true,
+    timeSpent = 30
+) => {
+  return Object.assign({}, state, {
+    level: data.changeLevel(state.level + 1),
+    lives: data.setLives(state.lives - live),
+    answers: data.addAnswer(state.answers, completed, timeSpent)
+  });
+};

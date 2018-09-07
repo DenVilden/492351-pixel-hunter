@@ -1,15 +1,23 @@
-const screenStats = `
+import game from "./data/game";
+
+const screenStats = (state) => `
       <ul class="stats">
-        <li class="stats__result stats__result--wrong"></li>
-        <li class="stats__result stats__result--slow"></li>
-        <li class="stats__result stats__result--fast"></li>
-        <li class="stats__result stats__result--correct"></li>
-        <li class="stats__result stats__result--unknown"></li>
-        <li class="stats__result stats__result--unknown"></li>
-        <li class="stats__result stats__result--unknown"></li>
-        <li class="stats__result stats__result--unknown"></li>
-        <li class="stats__result stats__result--unknown"></li>
-        <li class="stats__result stats__result--unknown"></li>
+        ${state.answers
+          .map((it) => {
+            if (it.completed) {
+              return `<li class="stats__result stats__result--correct"></li>`;
+            }
+
+            if (!it.completed) {
+              return `<li class="stats__result stats__result--wrong"></li>`;
+            }
+
+            return null;
+          })
+          .join(``)}
+        ${new Array(game.length - state.answers.length)
+          .fill(`<li class="stats__result stats__result--unknown"></li>`)
+          .join(``)}
       </ul>
 `;
 

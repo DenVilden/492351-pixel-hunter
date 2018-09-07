@@ -1,17 +1,12 @@
 import {render, selectSlide} from "./util";
 import greetingScreen from "./greeting";
+import screenHeaderButton from "./screen-header-button";
+import screenStats from "./screen-stats";
+import data from "./data/game-data";
 
-const template = `
+const template = (state) => `
     <header class="header">
-      <button class="back">
-        <span class="visually-hidden">Вернуться к началу</span>
-        <svg class="icon" width="45" height="45" viewBox="0 0 45 45" fill="#000000">
-          <use xlink:href="img/sprite.svg#arrow-left"></use>
-        </svg>
-        <svg class="icon" width="101" height="44" viewBox="0 0 101 44" fill="#000000">
-          <use xlink:href="img/sprite.svg#logo-small"></use>
-        </svg>
-      </button>
+      ${screenHeaderButton}
     </header>
     <section class="result">
       <h2 class="result__title">Победа!</h2>
@@ -20,16 +15,7 @@ const template = `
           <td class="result__number">1.</td>
           <td colspan="2">
             <ul class="stats">
-              <li class="stats__result stats__result--wrong"></li>
-              <li class="stats__result stats__result--slow"></li>
-              <li class="stats__result stats__result--fast"></li>
-              <li class="stats__result stats__result--correct"></li>
-              <li class="stats__result stats__result--wrong"></li>
-              <li class="stats__result stats__result--unknown"></li>
-              <li class="stats__result stats__result--slow"></li>
-              <li class="stats__result stats__result--unknown"></li>
-              <li class="stats__result stats__result--fast"></li>
-              <li class="stats__result stats__result--unknown"></li>
+              ${screenStats(state)}
             </ul>
           </td>
           <td class="result__points">× 100</td>
@@ -63,7 +49,10 @@ const template = `
           <td class="result__total">-100</td>
         </tr>
         <tr>
-          <td colspan="5" class="result__total  result__total--final">950</td>
+          <td colspan="5" class="result__total  result__total--final">${data.calculateScore(
+      state.answers,
+      state.lives
+  )}</td>
         </tr>
       </table>
       <table class="result__table">
@@ -71,16 +60,7 @@ const template = `
           <td class="result__number">2.</td>
           <td>
             <ul class="stats">
-              <li class="stats__result stats__result--wrong"></li>
-              <li class="stats__result stats__result--slow"></li>
-              <li class="stats__result stats__result--fast"></li>
-              <li class="stats__result stats__result--correct"></li>
-              <li class="stats__result stats__result--wrong"></li>
-              <li class="stats__result stats__result--unknown"></li>
-              <li class="stats__result stats__result--slow"></li>
-              <li class="stats__result stats__result--wrong"></li>
-              <li class="stats__result stats__result--fast"></li>
-              <li class="stats__result stats__result--wrong"></li>
+              ${screenStats(state)}
             </ul>
           </td>
           <td class="result__total"></td>
@@ -92,16 +72,7 @@ const template = `
           <td class="result__number">3.</td>
           <td colspan="2">
             <ul class="stats">
-              <li class="stats__result stats__result--wrong"></li>
-              <li class="stats__result stats__result--slow"></li>
-              <li class="stats__result stats__result--fast"></li>
-              <li class="stats__result stats__result--correct"></li>
-              <li class="stats__result stats__result--wrong"></li>
-              <li class="stats__result stats__result--unknown"></li>
-              <li class="stats__result stats__result--slow"></li>
-              <li class="stats__result stats__result--unknown"></li>
-              <li class="stats__result stats__result--fast"></li>
-              <li class="stats__result stats__result--unknown"></li>
+              ${screenStats(state)}
             </ul>
           </td>
           <td class="result__points">× 100</td>
@@ -123,10 +94,11 @@ const template = `
     </section>
 `;
 
-const statsScreen = render(template);
+export default (state) => {
+  const statsScreen = render(template(state));
 
-const backButton = statsScreen.querySelector(`.back`);
+  const backButton = statsScreen.querySelector(`.back`);
+  backButton.addEventListener(`click`, () => selectSlide(greetingScreen()));
 
-backButton.addEventListener(`click`, () => selectSlide(greetingScreen));
-
-export default statsScreen;
+  return statsScreen;
+};

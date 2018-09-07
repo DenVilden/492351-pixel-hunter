@@ -1,19 +1,12 @@
 import {render, selectSlide} from "./util";
-import screenTemplate from "./screen";
+import {screenTemplate} from "./screen";
 import greetingScreen from "./greeting";
-import gameA from "./data/game";
+import data from "./data/game-data";
+import screenHeaderButton from "./screen-header-button";
 
 const template = `
     <header class="header">
-      <button class="back">
-        <span class="visually-hidden">Вернуться к началу</span>
-        <svg class="icon" width="45" height="45" viewBox="0 0 45 45" fill="#000000">
-          <use xlink:href="img/sprite.svg#arrow-left"></use>
-        </svg>
-        <svg class="icon" width="101" height="44" viewBox="0 0 101 44" fill="#000000">
-          <use xlink:href="img/sprite.svg#logo-small"></use>
-        </svg>
-      </button>
+      ${screenHeaderButton}
     </header>
     <section class="rules">
       <h2 class="rules__title">Правила</h2>
@@ -34,19 +27,23 @@ const template = `
     </section>
 `;
 
-const rulesScreen = render(template);
+export default () => {
+  const rulesScreen = render(template);
 
-const rulesButton = rulesScreen.querySelector(`.rules__button`);
-const rulesInput = rulesScreen.querySelector(`.rules__input`);
-const backButton = rulesScreen.querySelector(`.back`);
+  const rulesInput = rulesScreen.querySelector(`.rules__input`);
 
-rulesButton.addEventListener(`click`, () => selectSlide(screenTemplate(gameA)));
+  // Отключает кнопку если input пустой
+  rulesInput.addEventListener(`input`, (evt) => {
+    return (rulesButton.disabled = evt.target.value.length === 0);
+  });
 
-backButton.addEventListener(`click`, () => selectSlide(greetingScreen));
+  const rulesButton = rulesScreen.querySelector(`.rules__button`);
+  rulesButton.addEventListener(`click`, () =>
+    selectSlide(screenTemplate(data.initialState))
+  );
 
-// Отключает кнопку если input пустой
-rulesInput.addEventListener(`input`, (evt) => {
-  return (rulesButton.disabled = evt.target.value.length === 0);
-});
+  const backButton = rulesScreen.querySelector(`.back`);
+  backButton.addEventListener(`click`, () => selectSlide(greetingScreen()));
 
-export default rulesScreen;
+  return rulesScreen;
+};

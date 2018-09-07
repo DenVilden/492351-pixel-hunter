@@ -1,13 +1,23 @@
 import {render, selectSlide} from "./util";
-import gameThreeScreen from "./game-3";
 import greetingScreen from "./greeting";
+import game from "./data/game";
+import screenHeaderButton from "./screen-header-button";
+import screenHeaderData from "./screen-header-data";
+import screenStats from "./screen-stats";
+import {screenTemplate, updateState} from "./screen";
 
-const template = `
+const template = (state) => `
+    <header class="header">
+      ${screenHeaderButton}
+      ${screenHeaderData(state)}
+    </header>
     <section class="game">
-      <p class="game__task">Угадай, фото или рисунок?</p>
+      <p class="game__task">${game[state.level].question}</p>
       <form class="game__content  game__content--wide">
         <div class="game__option">
-          <img src="http://placehold.it/705x455" alt="Option 1" width="705" height="455">
+          <img src="${
+  game[state.level].answers[0].src
+}" alt="Option 1" width="705" height="455">
           <label class="game__answer  game__answer--photo">
             <input class="visually-hidden" name="question1" type="radio" value="photo">
             <span>Фото</span>
@@ -18,31 +28,27 @@ const template = `
           </label>
         </div>
       </form>
-      <ul class="stats">
-        <li class="stats__result stats__result--wrong"></li>
-        <li class="stats__result stats__result--slow"></li>
-        <li class="stats__result stats__result--fast"></li>
-        <li class="stats__result stats__result--correct"></li>
-        <li class="stats__result stats__result--wrong"></li>
-        <li class="stats__result stats__result--unknown"></li>
-        <li class="stats__result stats__result--slow"></li>
-        <li class="stats__result stats__result--unknown"></li>
-        <li class="stats__result stats__result--fast"></li>
-        <li class="stats__result stats__result--unknown"></li>
-      </ul>
+      ${screenStats(state)}
     </section>
 `;
 
-const gameTwoScreen = render(template);
+export default (state) => {
+  const gameTwoScreen = render(template(state));
 
-const gameAnswer = gameTwoScreen.querySelectorAll(`.game__answer input`);
-const backButton = gameTwoScreen.querySelector(`.back`);
+  const gameAnswer = gameTwoScreen.querySelectorAll(`.game__answer input`);
 
-backButton.addEventListener(`click`, () => selectSlide(greetingScreen));
+  gameAnswer.forEach((input) => {
+    input.addEventListener(`input`, (evt) => {
+      if (evt.target.value === game[state.level].answers[0].value) {
+        selectSlide(screenTemplate(updateState(state)));
+      } else {
+        selectSlide(screenTemplate(updateState(state, 1, false)));
+      }
+    });
+  });
 
-// Меняет экран при выборе ответа
-gameAnswer.forEach((input) => {
-  input.addEventListener(`input`, () => selectSlide(gameThreeScreen));
-});
+  const backButton = gameTwoScreen.querySelector(`.back`);
+  backButton.addEventListener(`click`, () => selectSlide(greetingScreen()));
 
-export default gameTwoScreen;
+  return gameTwoScreen;
+};

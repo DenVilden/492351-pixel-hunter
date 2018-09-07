@@ -25,10 +25,12 @@ const template = `
     </section>
 `;
 
-const greetingScreen = render(template);
+export default () => {
+  const greetingScreen = render(template);
 
-const showRules = greetingScreen.querySelector(`.greeting__continue`);
+  const showRules = greetingScreen.querySelector(`.greeting__continue`);
 
-showRules.addEventListener(`click`, () => selectSlide(rulesScreen));
+  showRules.addEventListener(`click`, () => selectSlide(rulesScreen()));
 
-export default greetingScreen;
+  return greetingScreen;
+};

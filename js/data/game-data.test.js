@@ -1,5 +1,5 @@
 import {assert} from "chai";
-import {data} from "./game-data";
+import data from "./game-data";
 
 describe(`Calculate score`, () => {
   it(`should return -1 if array contains less than 10 answers`, () => {
@@ -27,7 +27,7 @@ describe(`Calculate score`, () => {
 
 describe(`Change level`, () => {
   it(`should update level of the game`, () => {
-    assert.equal(data.changeLevel(50), 50, `level hasnt updated`);
+    assert.equal(data.changeLevel(50), 50, `level has not updated`);
   });
   it(`should not allow set negative values`, () => {
     assert.throws(
@@ -53,8 +53,8 @@ describe(`Set lives`, () => {
   it(`should set live`, () => {
     assert.equal(data.setLives(2), 2, `cant update lives`);
   });
-  it(`should end the game if all lives spent`, () => {
-    assert.throws(() => data.setLives(0), `Game is over, no more lives`);
+  it(`should not allow set non number value`, () => {
+    assert.throws(() => data.setLives({}), `Level should be typeof number`);
   });
   it(`should not allow less than 0 or more than 3 lives`, () => {
     assert.throws(

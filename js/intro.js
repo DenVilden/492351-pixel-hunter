@@ -10,10 +10,12 @@ const template = `
     </section>
 `;
 
-const introScreen = render(template);
+export default () => {
+  const introScreen = render(template);
 
-const asterisk = introScreen.querySelector(`.intro__asterisk`);
+  const asterisk = introScreen.querySelector(`.intro__asterisk`);
 
-asterisk.addEventListener(`click`, () => selectSlide(greetingScreen));
+  asterisk.addEventListener(`click`, () => selectSlide(greetingScreen()));
 
-export default introScreen;
+  return introScreen;
+};
