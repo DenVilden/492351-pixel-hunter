@@ -77,11 +77,11 @@ const data = {
   },
 
   setLives(totalLives, live = 0) {
-    if (typeof live !== `number`) {
+    if (typeof totalLives !== `number`) {
       throw new Error(`Level should be typeof number`);
     }
 
-    if (live < 0 || live > 3) {
+    if (totalLives < 0 || totalLives > 3) {
       throw new Error(`Cant have less than 0 or more than 3 lives`);
     }
     return totalLives - live;
