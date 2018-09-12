@@ -27,7 +27,7 @@ describe(`Calculate score`, () => {
 
 describe(`Change level`, () => {
   it(`should update level of the game`, () => {
-    assert.equal(data.changeLevel(50), 50, `level has not updated`);
+    assert.equal(data.changeLevel(50), 51, `level has not updated`);
   });
   it(`should not allow set negative values`, () => {
     assert.throws(
@@ -50,8 +50,8 @@ describe(`Set time`, () => {
 });
 
 describe(`Set lives`, () => {
-  it(`should set live`, () => {
-    assert.equal(data.setLives(2), 2, `cant update lives`);
+  it(`should remove live`, () => {
+    assert.equal(data.setLives(2, 1), 1, `cant remove live`);
   });
   it(`should not allow set non number value`, () => {
     assert.throws(() => data.setLives({}), `Level should be typeof number`);

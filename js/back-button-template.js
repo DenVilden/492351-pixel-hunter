@@ -1,4 +1,4 @@
-const screenHeaderButton = `
+const backButtonTemplate = `
       <button class="back">
         <span class="visually-hidden">Вернуться к началу</span>
         <svg class="icon" width="45" height="45" viewBox="0 0 45 45" fill="#000000">
@@ -10,4 +10,4 @@ const screenHeaderButton = `
       </button>
 `;
 
-export default screenHeaderButton;
+export default backButtonTemplate;

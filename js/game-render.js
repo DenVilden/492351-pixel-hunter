@@ -31,15 +31,10 @@ export const screenTemplate = (state) => {
   return null;
 };
 
-export const updateState = (
-    state,
-    live = 0,
-    completed = true,
-    timeSpent = 30
-) => {
+export const updateState = (state, live, completed = true, timeSpent = 30) => {
   return Object.assign({}, state, {
-    level: data.changeLevel(state.level + 1),
-    lives: data.setLives(state.lives - live),
+    level: data.changeLevel(state.level),
+    lives: data.setLives(state.lives, live),
     answers: data.addAnswer(state.answers, completed, timeSpent)
   });
 };

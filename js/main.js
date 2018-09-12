@@ -1,4 +1,4 @@
-import {selectSlide} from "./util";
+import {show} from "./util";
 import introScreen from "./intro";
 
-selectSlide(introScreen());
+show(introScreen());

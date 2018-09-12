@@ -59,7 +59,7 @@ const data = {
     if (level < 0) {
       throw new Error(`Level should not be negative value`);
     }
-    return level;
+    return level + 1;
   },
 
   setTime(time) {
@@ -76,7 +76,7 @@ const data = {
     return newTimer.time;
   },
 
-  setLives(live) {
+  setLives(totalLives, live = 0) {
     if (typeof live !== `number`) {
       throw new Error(`Level should be typeof number`);
     }
@@ -84,7 +84,7 @@ const data = {
     if (live < 0 || live > 3) {
       throw new Error(`Cant have less than 0 or more than 3 lives`);
     }
-    return live;
+    return totalLives - live;
   }
 };
 

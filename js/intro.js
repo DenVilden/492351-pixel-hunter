@@ -1,21 +1,11 @@
-import {render, selectSlide} from "./util";
+import {show} from "./util";
 import greetingScreen from "./greeting";
-
-const template = `
-    <section class="intro">
-      <button class="intro__asterisk asterisk" type="button">
-        <span class="visually-hidden">Продолжить</span>*</button>
-      <p class="intro__motto">
-        <sup>*</sup> Это не фото. Это рисунок маслом нидерландского художника-фотореалиста Tjalf Sparnaay.</p>
-    </section>
-`;
+import IntroView from "./view/intro-view";
 
 export default () => {
-  const introScreen = render(template);
+  const introScreen = new IntroView();
 
-  const asterisk = introScreen.querySelector(`.intro__asterisk`);
+  introScreen.onClick = () => show(greetingScreen());
 
-  asterisk.addEventListener(`click`, () => selectSlide(greetingScreen()));
-
-  return introScreen;
+  return introScreen.element;
 };
