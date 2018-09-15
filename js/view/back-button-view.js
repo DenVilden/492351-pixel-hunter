@@ -1,5 +1,5 @@
 import AbstractView from "./abstract-view";
-import backButtonTemplate from "../back-button-template";
+import backButtonTemplate from "../templates/back-button-template";
 
 export default class BackButtonView extends AbstractView {
   get template() {

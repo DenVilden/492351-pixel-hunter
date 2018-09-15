@@ -1,21 +1,21 @@
 import AbstractView from "./abstract-view";
-import statsTemplate from "../stats-template";
+import statsTemplate from "../templates/stats-template";
+import game from "../data/game";
 
 export default class GameOneView extends AbstractView {
-  constructor(state, game) {
+  constructor(state) {
     super();
     this.state = state;
-    this.game = game;
   }
 
   get template() {
     return `
     <section class="game">
-      <p class="game__task">${this.game[this.state.level].question}</p>
+      <p class="game__task">${game[this.state.level].question}</p>
       <form class="game__content">
         <div class="game__option">
           <img src="${
-  this.game[this.state.level].answers[0].src
+  game[this.state.level].answers[0].src
 }" alt="Option 1" width="468" height="458">
           <label class="game__answer game__answer--photo">
             <input class="visually-hidden" name="question1" type="radio" value="photo">
@@ -28,7 +28,7 @@ export default class GameOneView extends AbstractView {
         </div>
         <div class="game__option">
           <img src="${
-  this.game[this.state.level].answers[1].src
+  game[this.state.level].answers[1].src
 }" alt="Option 2" width="468" height="458">
           <label class="game__answer  game__answer--photo">
             <input class="visually-hidden" name="question2" type="radio" value="photo">
@@ -47,30 +47,23 @@ export default class GameOneView extends AbstractView {
 
   bind() {
     const gameAnswer = this.element.querySelectorAll(`.game__answer input`);
-
     // Change screen if both inputs are checked
-    gameAnswer.forEach((input) => {
-      input.addEventListener(`input`, () => {
+    gameAnswer.forEach((it) => {
+      it.addEventListener(`input`, () => {
         const radio = this.element.querySelectorAll(
             `.game__answer input:checked`
         );
 
+        // Check if clicked element matches data
         if (radio.length === 2) {
-          if (
-            // Check if clicked element matches data
-            radio[0].value === this.game[this.state.level].answers[0].value &&
-            radio[1].value === this.game[this.state.level].answers[1].value
-          ) {
-            this.onSuccess();
-          } else {
-            this.onFail(); // Remove one life if it doesn't
-          }
+          this.onAnswer(
+              radio[0].value === game[this.state.level].answers[0].value &&
+              radio[1].value === game[this.state.level].answers[1].value
+          );
         }
       });
     });
   }
 
-  onSuccess() {}
-
-  onFail() {}
+  onAnswer() {}
 }

@@ -1,11 +1,11 @@
 import BackButtonView from "./back-button-view";
-import backButtonTemplate from "../back-button-template";
+import backButtonTemplate from "../templates/back-button-template";
+import data from "../data/game-data";
 
 export default class HeaderDataView extends BackButtonView {
-  constructor(state, data) {
+  constructor(state) {
     super();
     this.state = state;
-    this.data = data;
   }
 
   get template() {
@@ -14,7 +14,7 @@ export default class HeaderDataView extends BackButtonView {
     ${backButtonTemplate}
     <div class="game__timer">${this.state.time}</div>
     <div class="game__lives">
-      ${new Array(this.data.initialState.lives - this.state.lives)
+      ${new Array(data.initialState.lives - this.state.lives)
         .fill(
             `<img src="../img/heart__empty.svg" class="game__heart"
           alt=" Missed Life" width="31" height="27">`

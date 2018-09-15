@@ -1,4 +1,7 @@
-import {show} from "./util";
-import introScreen from "./intro";
+import Router from "./router";
 
-show(introScreen());
+const init = () => {
+  Router.showIntro();
+};
+
+init();

@@ -1,16 +1,19 @@
 const mainElement = document.querySelector(`#main`);
 
-export const render = (template) => {
+export const renderTemplate = (template = ``) => {
   const wrapper = document.createElement(`div`);
   wrapper.innerHTML = template.trim();
   return wrapper;
 };
 
-export const show = (element) => {
-  mainElement.textContent = ``;
-  mainElement.appendChild(element);
+export const changeView = (view) => {
+  mainElement.innerHTML = ``;
+  mainElement.appendChild(view.element);
 };
 
-export const renderHeader = (element, sibling) => {
-  sibling.element.prepend(element.element);
+export const renderGame = (element1, element2) => {
+  const root = document.createElement(`div`);
+  root.appendChild(element1.element);
+  root.appendChild(element2.element);
+  return root;
 };

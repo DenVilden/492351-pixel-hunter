@@ -1,4 +1,4 @@
-import {render} from "../util";
+import {renderTemplate} from "../util";
 
 export default class AbstractView {
   constructor() {
@@ -12,10 +12,10 @@ export default class AbstractView {
   }
 
   render() {
-    return render(this.template);
+    return renderTemplate(this.template);
   }
 
-  bind() {}
+  bind() {} // bind handlers if required
 
   get element() {
     if (this._element) {

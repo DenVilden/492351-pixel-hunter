@@ -29,7 +29,7 @@ export default class RulesView extends AbstractView {
 
     // Disable button if input is empty
     rulesInput.addEventListener(`input`, (evt) => {
-      return (rulesButton.disabled = evt.target.value.length === 0);
+      rulesButton.disabled = evt.target.value.length === 0;
     });
 
     rulesButton.addEventListener(`click`, () => this.onClick());
