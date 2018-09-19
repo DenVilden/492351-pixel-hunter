@@ -4,8 +4,30 @@ import GreetingController from "./controller/greeting-controller";
 import RulesController from "./controller/rules-controller";
 import StatsController from "./controller/stats-controller";
 import GameController from "./controller/game-controller";
+import ErrorView from "./view/error-view";
+import GameModel from "./game-model";
+
+const checkStatus = (response) => {
+  if (response.status >= 200 && response.status < 300) {
+    return response;
+  } else {
+    throw new Error(`${response.status}: ${response.statusText}`);
+  }
+};
+
+let data;
 
 export default class Router {
+  static init() {
+    window
+      .fetch(`https://es.dump.academy/pixel-hunter/questions`)
+      .then(checkStatus)
+      .then((response) => response.json())
+      .then((images) => (data = images))
+      .then(() => Router.showIntro())
+      .catch(Router.showError);
+  }
+
   static showIntro() {
     const intro = new IntroController();
     changeView(intro);
@@ -21,13 +43,22 @@ export default class Router {
     changeView(rules);
   }
 
+  static showData(playerName) {
+    Router.showGame(new GameModel(playerName, data));
+  }
+
   static showGame(model) {
-    const screen = new GameController(model);
-    changeView(screen);
+    const game = new GameController(model);
+    changeView(game);
   }
 
   static showStats(model) {
-    const statistics = new StatsController(model);
-    changeView(statistics);
+    const stats = new StatsController(model);
+    changeView(stats);
+  }
+
+  static showError() {
+    const error = new ErrorView();
+    changeView(error);
   }
 }

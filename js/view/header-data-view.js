@@ -1,20 +1,20 @@
-import BackButtonView from "./back-button-view";
-import backButtonTemplate from "../templates/back-button-template";
-import data from "../data/game-data";
+import BackButtonController from "../controller/back-button-controller";
+import gameData from "../data/game-data";
+import AbstractView from "./abstract-view";
 
-export default class HeaderDataView extends BackButtonView {
+export default class HeaderDataView extends AbstractView {
   constructor(state) {
     super();
     this.state = state;
+    this.button = new BackButtonController();
   }
 
   get template() {
     return `
   <header class="header">
-    ${backButtonTemplate}
     <div class="game__timer">${this.state.time}</div>
     <div class="game__lives">
-      ${new Array(data.initialState.lives - this.state.lives)
+      ${new Array(gameData.initialState.lives - this.state.lives)
         .fill(
             `<img src="../img/heart__empty.svg" class="game__heart"
           alt=" Missed Life" width="31" height="27">`
@@ -29,5 +29,15 @@ export default class HeaderDataView extends BackButtonView {
     </div>
   </header>
     `;
+  }
+
+  bind() {
+    const timer = this.element.querySelector(`.game__timer`);
+    if (this.state.time <= 5) {
+      timer.style.color = `red`;
+      setTimeout(() => {
+        timer.style.color = `black`;
+      }, 500); // half sec
+    }
   }
 }

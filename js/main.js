@@ -1,7 +1,7 @@
 import Router from "./router";
 
 const init = () => {
-  Router.showIntro();
+  Router.init();
 };
 
 init();
