@@ -17,3 +17,32 @@ export const renderGame = (element1, element2) => {
   root.appendChild(element2.element);
   return root;
 };
+
+export const checkIfElementExist = (array, url) => {
+  for (const element of array) {
+    if (element.image.url === url) {
+      return true;
+    }
+  }
+  return false;
+};
+
+export const getCorrectAnswers = (array, answer) => {
+  let index = 0;
+  for (const element of array) {
+    if (element.completed !== answer) {
+      index++;
+    }
+  }
+  return index;
+};
+
+export const getBonusAnswers = (array, answer) => {
+  let index = 0;
+  for (const element of array) {
+    if (element.completed === answer) {
+      index++;
+    }
+  }
+  return index;
+};

@@ -1,10 +1,8 @@
-import data from "./data/game-data";
-import game from "./data/game";
-
-const getLevel = (state) => game[state.level].type;
+import gameData from "./data/game-data";
 
 export default class GameModel {
-  constructor(playerName = `Игрок`) {
+  constructor(playerName = `Игрок`, data) {
+    this.data = data;
     this.playerName = playerName;
     this.restart();
   }
@@ -14,42 +12,46 @@ export default class GameModel {
   }
 
   die() {
-    return !this.hasNextLevel() || this.noLives();
+    return this.hasNextLevel() || this.hasLives();
   }
 
   hasNextLevel() {
-    return data.checkLevel(this._state.level + 1) > -1;
+    return this.getLevel(this._state.level + 1) === undefined;
   }
 
   changeLevel() {
-    this._state = data.changeLevel(this._state);
+    this._state = gameData.changeLevel(this._state);
+  }
+
+  getLevel(state) {
+    return this.data[state];
   }
 
   setLives() {
-    this._state = data.setLives(this._state);
+    this._state = gameData.setLives(this._state);
   }
 
   addAnswer(completed = false) {
-    this._state = data.addAnswer(this._state, completed, this._state.time);
+    this._state = gameData.addAnswer(this._state, completed, this._state.time);
   }
 
   restart() {
-    this._state = data.initialState;
+    this._state = gameData.initialState;
   }
 
-  noLives() {
+  hasLives() {
     return this._state.lives <= 0;
   }
 
-  noTime() {
+  hasTime() {
     return this._state.time <= 0;
   }
 
   getCurrentLevel() {
-    return getLevel(this._state);
+    return this.getLevel(this._state.level);
   }
 
   tick() {
-    this._state = data.tick(this._state);
+    this._state = gameData.tick(this._state);
   }
 }

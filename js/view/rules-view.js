@@ -1,8 +1,15 @@
 import AbstractView from "./abstract-view";
+import BackButtonController from "../controller/back-button-controller";
 
 export default class RulesView extends AbstractView {
+  constructor() {
+    super();
+    this.button = new BackButtonController();
+  }
+
   get template() {
     return `
+    <header class="header"></header>
     <section class="rules">
       <h2 class="rules__title">Правила</h2>
       <ul class="rules__description">
@@ -24,6 +31,9 @@ export default class RulesView extends AbstractView {
   }
 
   bind() {
+    const header = this.element.querySelector(`.header`);
+    header.appendChild(this.button.element);
+
     const rulesInput = this.element.querySelector(`.rules__input`);
     const rulesButton = this.element.querySelector(`.rules__button`);
 
