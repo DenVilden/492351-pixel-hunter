@@ -1,29 +1,27 @@
-import gameData from "../data/game-data";
-
-const statsTemplate = (state, data) => `
+const statsTemplate = (state) => `
   <ul class="stats">
-    ${state.answers
+    ${state
       .map((it) => {
-        if (it.completed === `wrong`) {
+        if (it === `wrong`) {
           return `<li class="stats__result stats__result--wrong"></li>`;
         }
 
-        if (it.timeSpent >= gameData.SCORE.QUICK_ANSWER) {
+        if (it === `fast`) {
           return `<li class="stats__result stats__result--fast"></li>`;
         }
 
-        if (it.timeSpent <= gameData.SCORE.SLOW_ANSWER) {
+        if (it === `slow`) {
           return `<li class="stats__result stats__result--slow"></li>`;
         }
 
-        if (it.completed === `correct`) {
+        if (it === `correct`) {
           return `<li class="stats__result stats__result--correct"></li>`;
         }
 
         return null;
       })
       .join(``)}
-    ${new Array(data.length - state.answers.length)
+    ${new Array(10 - state.length)
       .fill(`<li class="stats__result stats__result--unknown"></li>`)
       .join(``)}
   </ul>

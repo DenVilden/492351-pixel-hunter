@@ -2,7 +2,7 @@ const gameData = {
   initialState: {
     level: 0,
     lives: 3,
-    time: 30,
+    time: 10,
     answers: []
   },
 
@@ -27,7 +27,7 @@ const gameData = {
       return `slow`;
     }
 
-    if (timeSpent === true) {
+    if (completed === true) {
       return `correct`;
     }
     return null;
@@ -65,10 +65,7 @@ const gameData = {
   },
 
   pushAnswer(answers, completed, timeSpent) {
-    return answers.concat({
-      completed: this.getAnswer(timeSpent, completed),
-      timeSpent
-    });
+    return answers.concat(this.getAnswer(timeSpent, completed));
   },
 
   addAnswer(state, completed, timeSpent) {
@@ -81,6 +78,14 @@ const gameData = {
     return Object.assign({}, state, {
       time: state.time - 1
     });
+  },
+
+  getFinalStats(state) {
+    return {
+      stats: state.answers,
+      lives: state.lives,
+      score: this.calculateTotalScore(state.answers, state.lives)
+    };
   }
 };
 

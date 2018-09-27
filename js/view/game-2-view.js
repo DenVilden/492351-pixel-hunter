@@ -27,7 +27,7 @@ export default class GameTwoView extends AbstractView {
           </label>
         </div>
       </form>
-      ${statsTemplate(this.state, this.data)}
+      ${statsTemplate(this.state.answers)}
     </section>
     `;
   }

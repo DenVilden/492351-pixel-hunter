@@ -30,23 +30,37 @@ export default class GameThreeView extends AbstractView {
 }" alt="Option 3" width="304" height="455">
         </div>
       </form>
-      ${statsTemplate(this.state, this.data)}
+      ${statsTemplate(this.state.answers)}
     </section>
     `;
   }
 
   bind() {
     const gameAnswer = this.element.querySelectorAll(`.game__option`);
+    const isRight = this.element.querySelector(`.game__task`);
+
+    const getBonusAnswers = (evt) => {
+      if (isRight.textContent === `Найдите фото среди изображений`) {
+        return checkIfElementExist(
+            this.data[this.state.level].answers,
+            `photo`,
+            evt.target.src
+        );
+      }
+
+      return isRight.textContent === `Найдите рисунок среди изображений`
+        ? checkIfElementExist(
+            this.data[this.state.level].answers,
+            `painting`,
+            evt.target.src
+        )
+        : null;
+    };
 
     gameAnswer.forEach((it) => {
-      it.addEventListener(`click`, (evt) => {
-        this.onAnswer(
-            checkIfElementExist(
-                this.data[this.state.level].answers,
-                evt.target.src
-            )
-        );
-      });
+      it.addEventListener(`click`, (evt) =>
+        this.onAnswer(getBonusAnswers(evt))
+      );
     });
   }
 

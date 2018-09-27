@@ -83,7 +83,8 @@ export default class GameController {
   }
 
   endGame() {
-    Router.showStats(this.model);
+    const result = this.model.updateScore(this.model.state);
+    Router.showResult(result, this.model.playerName);
   }
 
   changeGame() {
@@ -96,6 +97,5 @@ export default class GameController {
     this.headerData.element.replaceWith(header.element);
     this.headerData = header;
     header.element.querySelector(`header`).prepend(this.backButton.element);
-    header.onClick = () => Router.showGreeting();
   }
 }

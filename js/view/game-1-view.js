@@ -10,7 +10,6 @@ export default class GameOneView extends AbstractView {
 
   get template() {
     return `
-    <header class="header"></header>
     <section class="game">
       <p class="game__task">${this.data[this.state.level].question}</p>
       <form class="game__content">
@@ -41,7 +40,7 @@ export default class GameOneView extends AbstractView {
           </label>
         </div>
       </form>
-      ${statsTemplate(this.state, this.data)}
+      ${statsTemplate(this.state.answers)}
     </section>
     `;
   }

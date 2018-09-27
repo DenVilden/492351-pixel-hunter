@@ -2,28 +2,18 @@ import {changeView} from "./util";
 import IntroController from "./controller/intro-controller";
 import GreetingController from "./controller/greeting-controller";
 import RulesController from "./controller/rules-controller";
-import StatsController from "./controller/stats-controller";
 import GameController from "./controller/game-controller";
 import ErrorView from "./view/error-view";
 import GameModel from "./game-model";
+import ResultView from "./view/result-view";
+import Loader from "./loader";
 
-const checkStatus = (response) => {
-  if (response.status >= 200 && response.status < 300) {
-    return response;
-  } else {
-    throw new Error(`${response.status}: ${response.statusText}`);
-  }
-};
-
-let data;
+let gameData;
 
 export default class Router {
   static init() {
-    window
-      .fetch(`https://es.dump.academy/pixel-hunter/questions`)
-      .then(checkStatus)
-      .then((response) => response.json())
-      .then((images) => (data = images))
+    Loader.loadData()
+      .then((data) => (gameData = data))
       .then(() => Router.showIntro())
       .catch(Router.showError);
   }
@@ -44,7 +34,7 @@ export default class Router {
   }
 
   static showData(playerName) {
-    Router.showGame(new GameModel(playerName, data));
+    Router.showGame(new GameModel(playerName, gameData));
   }
 
   static showGame(model) {
@@ -52,9 +42,14 @@ export default class Router {
     changeView(game);
   }
 
-  static showStats(model) {
-    const stats = new StatsController(model);
-    changeView(stats);
+  static showResult(state, playerName) {
+    const result = new ResultView(state);
+    changeView(result);
+
+    Loader.saveResults(state, playerName)
+      .then(() => Loader.loadResults(playerName))
+      .then((data) => result.showScores(data))
+      .catch(Router.showError);
   }
 
   static showError() {

@@ -1,7 +1,7 @@
 import gameData from "./data/game-data";
 
 export default class GameModel {
-  constructor(playerName = `Игрок`, data) {
+  constructor(playerName, data) {
     this.data = data;
     this.playerName = playerName;
     this.restart();
@@ -53,5 +53,9 @@ export default class GameModel {
 
   tick() {
     this._state = gameData.tick(this._state);
+  }
+
+  updateScore(model) {
+    return gameData.getFinalStats(model);
   }
 }

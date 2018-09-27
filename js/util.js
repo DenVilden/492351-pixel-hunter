@@ -18,19 +18,22 @@ export const renderGame = (element1, element2) => {
   return root;
 };
 
-export const checkIfElementExist = (array, url) => {
-  for (const element of array) {
-    if (element.image.url === url) {
-      return true;
+export const checkIfElementExist = (array, answer, url) => {
+  const question = [];
+
+  for (const iterator of array) {
+    if (iterator.type === answer) {
+      question.push(iterator);
     }
   }
-  return false;
+
+  return question[0].image.url === url;
 };
 
 export const getCorrectAnswers = (array, answer) => {
   let index = 0;
-  for (const element of array) {
-    if (element.completed !== answer) {
+  for (let element of array) {
+    if (element !== answer) {
       index++;
     }
   }
@@ -39,8 +42,8 @@ export const getCorrectAnswers = (array, answer) => {
 
 export const getBonusAnswers = (array, answer) => {
   let index = 0;
-  for (const element of array) {
-    if (element.completed === answer) {
+  for (let element of array) {
+    if (element === answer) {
       index++;
     }
   }

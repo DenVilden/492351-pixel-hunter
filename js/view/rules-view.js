@@ -42,7 +42,7 @@ export default class RulesView extends AbstractView {
       rulesButton.disabled = evt.target.value.length === 0;
     });
 
-    rulesButton.addEventListener(`click`, () => this.onClick());
+    rulesButton.addEventListener(`click`, () => this.onClick(rulesInput.value));
   }
 
   onClick() {}
