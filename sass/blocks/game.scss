@@ -2,20 +2,21 @@
  * Стили для игровых экранов
  */
 
-@import "../variables/colors";
-@import "../mixins/text";
+@import '../variables/colors';
+@import '../mixins/text';
 
 .game {
   display: flex;
+  align-items: center;
   flex-direction: column;
   justify-content: space-between;
-  align-items: center;
 }
 
 .game__timer {
-  @include bold-text;
   font-size: 60px;
   line-height: 45px;
+
+  @include bold-text;
 }
 
 .game__task {
@@ -36,22 +37,24 @@
 
 .game__option {
   position: relative;
-  border: 10px solid transparent;
 
   width: 468px;
   height: 458px;
-  font-size: 0;
 
   text-align: center;
   vertical-align: middle;
+
+  border: 10px solid transparent;
+
+  font-size: 0;
 }
 
 .game__answer {
   position: absolute;
+  bottom: 30px;
+
   width: 78px;
   height: 78px;
-
-  bottom: 30px;
 
   font-size: 0;
 
@@ -62,7 +65,6 @@
     height: 100%;
 
     border-radius: 70px;
-
     background: rgba(0, 0, 0, 0.5) no-repeat center;
 
     &:hover {
@@ -74,7 +76,7 @@
     left: 30px;
 
     & span {
-      background-image: url("../img/photo_big.png");
+      background-image: url('../img/photo_big.png');
     }
   }
 
@@ -82,7 +84,7 @@
     right: 30px;
 
     & span {
-      background-image: url("../img/paint_big.png");
+      background-image: url('../img/paint_big.png');
     }
   }
 
@@ -115,10 +117,10 @@
 }
 
 .game__content--triple .game__option {
-  cursor: pointer;
-
   width: 304px;
   height: 455px;
+
+  cursor: pointer;
 
   &:hover {
     border-color: $link-hover-color;

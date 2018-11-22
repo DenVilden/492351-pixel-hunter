@@ -2,13 +2,13 @@
  * Стили для экранов с результатами игры
  */
 
-@import "../mixins/text";
+@import '../mixins/text';
 
 .result {
   display: flex;
+  align-items: center;
   flex-direction: column;
   justify-content: space-between;
-  align-items: center;
 }
 
 .result__title {
@@ -17,25 +17,25 @@
   font-size: 44px;
 
   &--single {
-    padding-top: 150px;
     position: relative;
+
+    padding-top: 150px;
 
     font-size: 50px;
     line-height: 50px;
 
     &::before {
       position: absolute;
-      content: "";
+      top: 0;
+      left: 50%;
 
       width: 111px;
       height: 123px;
 
-      top: 0;
-      left: 50%;
-
+      content: '';
       transform: translateX(-50%);
 
-      background-image: url("../img/icon-top.svg");
+      background-image: url('../img/icon-top.svg');
       background-repeat: no-repeat;
       background-size: 111px 123px;
     }
@@ -43,14 +43,13 @@
 }
 
 .result__text {
-  @include regular-text;
-
   font-weight: 500;
+
+  @include regular-text;
 }
 
 .result__table {
   width: 670px;
-
   margin-bottom: 40px;
 
   td {
@@ -67,12 +66,14 @@
 }
 
 .result__number {
-  @include bold-text;
   font-size: 22px;
+
+  @include bold-text;
 }
 
 .result__extra {
   min-width: 50px;
+
   text-align: right;
 }
 

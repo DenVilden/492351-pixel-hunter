@@ -3,14 +3,14 @@
  * Кнопка возврата на первый шаг и табы для экранов с результатами
  */
 
-@import "../variables/colors";
+@import '../variables/colors';
 
 .header {
-  height: 100px;
-
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
+
+  height: 100px;
 }
 
 .back {
@@ -31,16 +31,15 @@
 }
 
 .tab {
+  width: 130px;
+  height: 40px;
   margin: 0;
   padding: 0;
 
-  width: 130px;
-  height: 40px;
+  border: none;
+  background-color: rgba(0, 0, 0, 0.1);
 
   font-size: 22px;
-
-  background-color: rgba(0, 0, 0, 0.1);
-  border: none;
 
   &:hover,
   &:focus {

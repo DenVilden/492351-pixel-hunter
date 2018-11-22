@@ -2,19 +2,19 @@
  * Стили для модальных окон
  */
 
-@import "../mixins/text";
+@import '../mixins/text';
 
 .modal {
   position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  left: 0;
+  z-index: 1;
   top: 0;
   right: 0;
   bottom: 0;
-  z-index: 1;
+  left: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   background-color: rgba(0, 0, 0, 0.8);
 
@@ -25,19 +25,20 @@
 
 .modal__inner {
   position: relative;
+
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+
   width: 450px;
   padding: 50px 20px;
 
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  animation: bounce 0.6s;
 
   color: #000000;
   background: #a8c8c4 linear-gradient(to bottom left, #ccdeeb, #84b39e)
     no-repeat;
-
-  animation: bounce 0.6s;
 }
 
 .modal__title {
@@ -59,22 +60,21 @@
 }
 
 .modal__close {
-  padding: 0;
-
   position: absolute;
   top: -40px;
   right: -40px;
 
   width: 30px;
   height: 30px;
+  padding: 0;
 
-  background-color: transparent;
-  background-image: url("../img/icon-cross.svg");
-  background-repeat: no-repeat;
-  background-size: 30px 30px;
+  cursor: pointer;
 
   border: none;
-  cursor: pointer;
+  background-color: transparent;
+  background-image: url('../img/icon-cross.svg');
+  background-repeat: no-repeat;
+  background-size: 30px 30px;
 
   &:hover,
   &:focus {
@@ -92,15 +92,15 @@
 }
 
 .modal__btn {
-  @include regular-text;
-
-  padding: 0 20px;
   height: 50px;
+  padding: 0 20px;
 
-  background-color: #ffffff;
-  border-radius: 5px;
   border: 2px transparent;
   border-style: solid;
+  border-radius: 5px;
+  background-color: #ffffff;
+
+  @include regular-text;
 
   &:hover,
   &:focus {

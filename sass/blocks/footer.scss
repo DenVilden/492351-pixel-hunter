@@ -2,24 +2,25 @@
  * Стили для футера сайта
  */
 
-@import "../variables/colors";
-@import "../mixins/text";
+@import '../variables/colors';
+@import '../mixins/text';
 
 .footer {
-  margin-top: 50px;
-
   display: flex;
+  align-items: center;
   flex-direction: column;
   justify-content: space-between;
-  align-items: center;
+
+  margin-top: 50px;
 }
 
 .footer__made-in {
-  @include small-text;
-
   display: block;
+
   margin-top: 5px;
   margin-bottom: 15px;
+
+  @include small-text;
 }
 
 .footer__link {

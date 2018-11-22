@@ -2,21 +2,23 @@
  * Стили для приветственного экрана. Правила игры
  */
 
-@import "../mixins/general";
-@import "../mixins/text";
-@import "../variables/colors";
+@import '../mixins/general';
+@import '../mixins/text';
+@import '../variables/colors';
 
 .greeting {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
   position: relative;
+
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
   width: 780px;
   height: 740px;
 
   transition: background-image 1s ease-in-out;
-  background: url("../img/egg_distort.png") no-repeat center;
+
+  background: url('../img/egg_distort.png') no-repeat center;
   background-size: contain;
 }
 
@@ -35,16 +37,16 @@
 }
 
 .greeting__challenge-title {
-  @include bold-text;
-
   margin: 0 100px;
   margin-bottom: 50px;
+
+  @include bold-text;
 }
 
 .greeting__challenge-text {
-  @include regular-text;
-
   margin: 0;
+
+  @include regular-text;
 }
 
 .greeting__challenge-list {
@@ -52,19 +54,18 @@
 }
 
 .greeting__continue {
-  padding: 0;
-
   position: absolute;
-  right: -20px;
   top: 300px;
+  right: -20px;
 
   width: 64px;
   height: 64px;
+  padding: 0;
 
   cursor: pointer;
 
-  background-color: transparent;
   border: none;
+  background-color: transparent;
 
   &:hover svg,
   &:focus svg {
@@ -74,6 +75,6 @@
 
 .greeting__top {
   position: absolute;
-  right: 0;
   top: 0;
+  right: 0;
 }

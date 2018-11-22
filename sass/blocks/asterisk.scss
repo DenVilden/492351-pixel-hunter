@@ -2,16 +2,16 @@
  * Стили для кнопки-звёздочки
  */
 
-@import "../variables/colors";
+@import '../variables/colors';
 
 .asterisk {
   padding: 0;
 
-  color: $main-red-color;
   cursor: pointer;
 
-  background: transparent;
+  color: $main-red-color;
   border: none;
+  background: transparent;
 
   &:hover,
   &:focus {

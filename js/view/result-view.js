@@ -33,13 +33,14 @@ export default class ResultView extends AbstractView {
 
   showScores(scores) {
     this._result.innerHTML = `
-  <h2 class="result__title">${
-  this.state.lives <= 0 ? `Поражение` : `Победа!`
-}</h2>
-  <table class="result__table">
-    ${scores
-      .map(
-          (it, i) => `
+      <h2 class="result__title">
+        ${this.state.lives <= 0 ? `Поражение` : `Победа!`}
+      </h2>
+      <table class="result__table">
+        ${scores
+          .reverse()
+          .map(
+              (it, i) => `
     <tr>
       <td class="result__number">${i + 1}.</td>
       <td colspan="2">
@@ -49,10 +50,10 @@ export default class ResultView extends AbstractView {
       </td>
       ${this.renderResult(it)}
     `
-      )
-      .join(``)}
-  </table>
-  `;
+          )
+          .join(``)}
+      </table>
+    `;
   }
 
   renderResult(it) {
@@ -82,15 +83,15 @@ export default class ResultView extends AbstractView {
 
   renderBonus(answer, type) {
     return `
-        <tr>
-          <td></td>
-          <td class="result__extra">${result[type]}:</td>
-          <td class="result__extra">${answer}
-            <span class="stats__result stats__result--${type}"></span>
-          </td>
-          <td class="result__points">× ${gameData.SCORE.BONUS_ANSWER}</td>
-          <td class="result__total">${answer * gameData.SCORE.BONUS_ANSWER}</td>
-        </tr>
+      <tr>
+        <td></td>
+        <td class="result__extra">${result[type]}:</td>
+        <td class="result__extra">
+          ${answer} <span class="stats__result stats__result--${type}"></span>
+        </td>
+        <td class="result__points">× ${gameData.SCORE.BONUS_ANSWER}</td>
+        <td class="result__total">${answer * gameData.SCORE.BONUS_ANSWER}</td>
+      </tr>
     `;
   }
 }

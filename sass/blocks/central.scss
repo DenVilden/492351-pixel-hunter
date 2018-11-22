@@ -3,20 +3,21 @@
  */
 
 .central {
-  margin: 0 auto;
   position: relative;
-  max-width: 1000px;
 
   display: flex;
+  align-items: center;
   flex-direction: column;
   justify-content: space-between;
-  align-items: center;
+
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
 .central__content {
   display: flex;
   flex-direction: column;
 
-  padding-top: 30px;
   min-height: 740px;
+  padding-top: 30px;
 }

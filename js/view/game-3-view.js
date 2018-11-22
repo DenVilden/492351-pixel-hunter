@@ -11,27 +11,36 @@ export default class GameThreeView extends AbstractView {
 
   get template() {
     return `
-    <section class="game">
-      <p class="game__task">${this.data[this.state.level].question}</p>
-      <form class="game__content  game__content--triple">
-        <div class="game__option">
-          <img src="${
-  this.data[this.state.level].answers[0].image.url
-}" alt="Option 1" width="304" height="455">
-        </div>
-        <div class="game__option  game__option--selected">
-          <img src="${
-  this.data[this.state.level].answers[1].image.url
-}" alt="Option 2" width="304" height="455">
-        </div>
-        <div class="game__option">
-          <img src="${
-  this.data[this.state.level].answers[2].image.url
-}" alt="Option 3" width="304" height="455">
-        </div>
-      </form>
-      ${statsTemplate(this.state.answers)}
-    </section>
+      <section class="game">
+        <p class="game__task">${this.data[this.state.level].question}</p>
+        <form class="game__content  game__content--triple">
+          <div class="game__option">
+            <img
+              src="${this.data[this.state.level].answers[0].image.url}"
+              alt="Option 1"
+              width="304"
+              height="455"
+            />
+          </div>
+          <div class="game__option  game__option--selected">
+            <img
+              src="${this.data[this.state.level].answers[1].image.url}"
+              alt="Option 2"
+              width="304"
+              height="455"
+            />
+          </div>
+          <div class="game__option">
+            <img
+              src="${this.data[this.state.level].answers[2].image.url}"
+              alt="Option 3"
+              width="304"
+              height="455"
+            />
+          </div>
+        </form>
+        ${statsTemplate(this.state.answers)}
+      </section>
     `;
   }
 
