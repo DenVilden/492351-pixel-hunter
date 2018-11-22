@@ -2,7 +2,7 @@
  * Стили для экранов с результатами игры
  */
 
-@import '../mixins/text';
+@import "../mixins/text";
 
 .result {
   display: flex;
@@ -32,10 +32,10 @@
       width: 111px;
       height: 123px;
 
-      content: '';
+      content: "";
       transform: translateX(-50%);
 
-      background-image: url('../img/icon-top.svg');
+      background-image: url("../img/icon-top.svg");
       background-repeat: no-repeat;
       background-size: 111px 123px;
     }
