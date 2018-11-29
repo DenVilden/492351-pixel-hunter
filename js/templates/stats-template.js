@@ -1,7 +1,7 @@
-const statsTemplate = (state) => `
+const statsTemplate = state => `
   <ul class="stats">
     ${state
-      .map((it) => {
+      .map(it => {
         if (it === `wrong`) {
           return `<li class="stats__result stats__result--wrong"></li>`;
         }

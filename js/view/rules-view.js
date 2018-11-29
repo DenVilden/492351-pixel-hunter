@@ -1,5 +1,5 @@
-import AbstractView from "./abstract-view";
-import BackButtonController from "../controller/back-button-controller";
+import AbstractView from './abstract-view';
+import BackButtonController from '../controller/back-button-controller';
 
 export default class RulesView extends AbstractView {
   constructor() {
@@ -54,7 +54,7 @@ export default class RulesView extends AbstractView {
     const rulesButton = this.element.querySelector(`.rules__button`);
 
     // Disable button if input is empty
-    rulesInput.addEventListener(`input`, (evt) => {
+    rulesInput.addEventListener(`input`, evt => {
       rulesButton.disabled = evt.target.value.length === 0;
     });
 

@@ -6,7 +6,7 @@ export const renderTemplate = (template = ``) => {
   return wrapper;
 };
 
-export const changeView = (view) => {
+export const changeView = view => {
   mainElement.innerHTML = ``;
   mainElement.appendChild(view.element);
 };

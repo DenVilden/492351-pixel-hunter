@@ -1,5 +1,5 @@
-import IntroView from "../view/intro-view";
-import Router from "../router";
+import IntroView from '../view/intro-view';
+import Router from '../router';
 
 export default class IntroController {
   constructor() {

@@ -1,4 +1,4 @@
-import gameData from "./data/game-data";
+import gameData from './data/game-data';
 
 export default class GameModel {
   constructor(playerName, data) {

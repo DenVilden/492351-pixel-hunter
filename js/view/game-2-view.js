@@ -1,5 +1,5 @@
-import AbstractView from "./abstract-view";
-import statsTemplate from "../templates/stats-template";
+import AbstractView from './abstract-view';
+import statsTemplate from '../templates/stats-template';
 
 export default class GameTwoView extends AbstractView {
   constructor(state, data) {
@@ -48,10 +48,10 @@ export default class GameTwoView extends AbstractView {
   bind() {
     const gameAnswer = this.element.querySelectorAll(`.game__answer input`);
 
-    gameAnswer.forEach((it) => {
-      it.addEventListener(`input`, (evt) => {
+    gameAnswer.forEach(it => {
+      it.addEventListener(`input`, evt => {
         this.onAnswer(
-            evt.target.value === this.data[this.state.level].answers[0].type
+          evt.target.value === this.data[this.state.level].answers[0].type
         );
       });
     });

@@ -1,5 +1,5 @@
-import GreetingView from "../view/greeting-view";
-import Router from "../router";
+import GreetingView from '../view/greeting-view';
+import Router from '../router';
 
 export default class GreetingController {
   constructor() {

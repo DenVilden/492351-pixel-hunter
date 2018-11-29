@@ -9,5 +9,5 @@
     "commonjs": true,
     "mocha": true
   },
-  "extends": "htmlacademy/es6"
+  "extends": ["htmlacademy/es6", "prettier"]
 }

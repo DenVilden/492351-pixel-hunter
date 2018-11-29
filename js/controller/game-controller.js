@@ -1,18 +1,18 @@
-import {renderGame} from "../util";
-import Router from "../router";
-import HeaderDataView from "../view/header-data-view";
-import GameOneView from "../view/game-1-view";
-import GameTwoView from "../view/game-2-view";
-import GameThreeView from "../view/game-3-view";
-import BackButtonController from "./back-button-controller";
+import { renderGame } from '../util';
+import Router from '../router';
+import HeaderDataView from '../view/header-data-view';
+import GameOneView from '../view/game-1-view';
+import GameTwoView from '../view/game-2-view';
+import GameThreeView from '../view/game-3-view';
+import BackButtonController from './back-button-controller';
 
 export default class GameController {
   constructor(model) {
     this.model = model;
     this.screen = this.initGame(
-        this.model.state,
-        this.model.data,
-        this.model.getCurrentLevel()
+      this.model.state,
+      this.model.data,
+      this.model.getCurrentLevel()
     );
     this.headerData = new HeaderDataView(this.model.state);
     this.backButton = new BackButtonController();

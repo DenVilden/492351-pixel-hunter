@@ -1,6 +1,6 @@
-import AbstractView from "./abstract-view";
-import statsTemplate from "../templates/stats-template";
-import {checkIfElementExist} from "../util";
+import AbstractView from './abstract-view';
+import statsTemplate from '../templates/stats-template';
+import { checkIfElementExist } from '../util';
 
 export default class GameThreeView extends AbstractView {
   constructor(state, data) {
@@ -48,12 +48,12 @@ export default class GameThreeView extends AbstractView {
     const gameAnswer = this.element.querySelectorAll(`.game__option`);
     const isRight = this.element.querySelector(`.game__task`);
 
-    const getBonusAnswers = (evt) => {
+    const getBonusAnswers = evt => {
       if (isRight.textContent === `Найдите фото среди изображений`) {
         return checkIfElementExist(
-            this.data[this.state.level].answers,
-            `photo`,
-            evt.target.src
+          this.data[this.state.level].answers,
+          `photo`,
+          evt.target.src
         );
       }
 
@@ -62,14 +62,12 @@ export default class GameThreeView extends AbstractView {
             this.data[this.state.level].answers,
             `painting`,
             evt.target.src
-        )
+          )
         : null;
     };
 
-    gameAnswer.forEach((it) => {
-      it.addEventListener(`click`, (evt) =>
-        this.onAnswer(getBonusAnswers(evt))
-      );
+    gameAnswer.forEach(it => {
+      it.addEventListener(`click`, evt => this.onAnswer(getBonusAnswers(evt)));
     });
   }
 

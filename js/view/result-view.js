@@ -1,8 +1,8 @@
-import AbstractView from "./abstract-view";
-import statsTemplate from "../templates/stats-template";
-import gameData from "../data/game-data";
-import {getCorrectAnswers, getBonusAnswers} from "../util";
-import BackButtonController from "../controller/back-button-controller";
+import AbstractView from './abstract-view';
+import statsTemplate from '../templates/stats-template';
+import gameData from '../data/game-data';
+import { getCorrectAnswers, getBonusAnswers } from '../util';
+import BackButtonController from '../controller/back-button-controller';
 
 const result = {
   fast: `Бонус за скорость`,
@@ -40,7 +40,7 @@ export default class ResultView extends AbstractView {
         ${scores
           .reverse()
           .map(
-              (it, i) => `
+            (it, i) => `
     <tr>
       <td class="result__number">${i + 1}.</td>
       <td colspan="2">
@@ -74,8 +74,8 @@ export default class ResultView extends AbstractView {
     ${this.renderBonus(getBonusAnswers(it.stats, `slow`), `slow`)}
     <tr>
       <td colspan="5" class="result__total  result__total--final">${
-  it.score
-}</td>
+        it.score
+      }</td>
     </tr>
 
     `;

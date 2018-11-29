@@ -1,5 +1,5 @@
-import AbstractView from "./abstract-view";
-import statsTemplate from "../templates/stats-template";
+import AbstractView from './abstract-view';
+import statsTemplate from '../templates/stats-template';
 
 export default class GameOneView extends AbstractView {
   constructor(state, data) {
@@ -74,16 +74,16 @@ export default class GameOneView extends AbstractView {
   bind() {
     const gameAnswer = this.element.querySelectorAll(`.game__answer input`);
     // Change screen if both inputs are checked
-    gameAnswer.forEach((it) => {
+    gameAnswer.forEach(it => {
       it.addEventListener(`input`, () => {
         const radio = this.element.querySelectorAll(
-            `.game__answer input:checked`
+          `.game__answer input:checked`
         );
 
         // Check if clicked element matches data
         if (radio.length === 2) {
           this.onAnswer(
-              radio[0].value === this.data[this.state.level].answers[0].type &&
+            radio[0].value === this.data[this.state.level].answers[0].type &&
               radio[1].value === this.data[this.state.level].answers[1].type
           );
         }

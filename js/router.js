@@ -1,19 +1,19 @@
-import {changeView} from "./util";
-import IntroController from "./controller/intro-controller";
-import GreetingController from "./controller/greeting-controller";
-import RulesController from "./controller/rules-controller";
-import GameController from "./controller/game-controller";
-import ErrorView from "./view/error-view";
-import GameModel from "./game-model";
-import ResultView from "./view/result-view";
-import Loader from "./loader";
+import { changeView } from './util';
+import IntroController from './controller/intro-controller';
+import GreetingController from './controller/greeting-controller';
+import RulesController from './controller/rules-controller';
+import GameController from './controller/game-controller';
+import ErrorView from './view/error-view';
+import GameModel from './game-model';
+import ResultView from './view/result-view';
+import Loader from './loader';
 
 let gameData;
 
 export default class Router {
   static init() {
     Loader.loadData()
-      .then((data) => (gameData = data))
+      .then(data => (gameData = data))
       .then(() => Router.showIntro())
       .catch(Router.showError);
   }
@@ -48,7 +48,7 @@ export default class Router {
 
     Loader.saveResults(state, playerName)
       .then(() => Loader.loadResults(playerName))
-      .then((data) => result.showScores(data))
+      .then(data => result.showScores(data))
       .catch(Router.showError);
   }
 
