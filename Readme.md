@@ -1,5 +1,7 @@
 # Личный проект «Пиксель хантер» [![Build status][travis-image]][travis-url]
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/DenVilden/pixel-hunter.svg)](https://greenkeeper.io/)
+
 - Студент: [Denis Tolmachev](https://up.htmlacademy.ru/ecmascript/6/user/492351).
 - Наставник: [Сергей Вохмянин](https://up.htmlacademy.ru/ecmascript/6/user/530823).
 
