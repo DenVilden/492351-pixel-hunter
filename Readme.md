@@ -1,7 +1,6 @@
 # Личный проект «Пиксель хантер»
 
 [![Build Status](https://travis-ci.org/DenVilden/pixel-hunter.svg?branch=master)](https://travis-ci.org/DenVilden/pixel-hunter)
-[![Greenkeeper badge](https://badges.greenkeeper.io/DenVilden/pixel-hunter.svg)](https://greenkeeper.io/)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
 - Студент: [Denis Tolmachev](https://up.htmlacademy.ru/ecmascript/6/user/492351).
