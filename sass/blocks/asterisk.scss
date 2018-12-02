@@ -5,13 +5,11 @@
 @import "../variables/colors";
 
 .asterisk {
-  padding: 0;
-
-  cursor: pointer;
-
-  color: $main-red-color;
-  border: none;
   background: transparent;
+  border: none;
+  color: $main-red-color;
+  cursor: pointer;
+  padding: 0;
 
   &:hover,
   &:focus {

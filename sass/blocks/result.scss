@@ -5,52 +5,46 @@
 @import "../mixins/text";
 
 .result {
-  display: flex;
   align-items: center;
+  display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
 .result__title {
+  font-size: 44px;
   margin: 30px 0;
 
-  font-size: 44px;
-
   &--single {
-    position: relative;
-
-    padding-top: 150px;
-
     font-size: 50px;
     line-height: 50px;
+    padding-top: 150px;
+    position: relative;
 
     &::before {
-      position: absolute;
-      top: 0;
-      left: 50%;
-
-      width: 111px;
-      height: 123px;
-
-      content: "";
-      transform: translateX(-50%);
-
       background-image: url("../img/icon-top.svg");
       background-repeat: no-repeat;
       background-size: 111px 123px;
+      content: "";
+      height: 123px;
+      left: 50%;
+      position: absolute;
+      top: 0;
+      transform: translateX(-50%);
+      width: 111px;
     }
   }
 }
 
 .result__text {
-  font-weight: 500;
-
   @include regular-text;
+
+  font-weight: 500;
 }
 
 .result__table {
-  width: 670px;
   margin-bottom: 40px;
+  width: 670px;
 
   td {
     border: 10px solid transparent;
@@ -66,20 +60,18 @@
 }
 
 .result__number {
-  font-size: 22px;
-
   @include bold-text;
+
+  font-size: 22px;
 }
 
 .result__extra {
   min-width: 50px;
-
   text-align: right;
 }
 
 .result__total {
   min-width: 40px;
-
   text-align: right;
   text-transform: uppercase;
 

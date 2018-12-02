@@ -12,17 +12,17 @@
 }
 
 .rules__title {
-  margin: 30px 0;
-
   @include bold-text;
+
+  margin: 30px 0;
 }
 
 .rules__description {
+  @include list-unstyled;
+  @include regular-text;
+
   margin: 0;
   margin-bottom: 30px;
-
-  @include regular-text;
-  @include list-unstyled;
 }
 
 .rules__icon {
@@ -30,32 +30,28 @@
 }
 
 .rules__ready {
+  font-weight: 700;
   margin: 0;
   margin-bottom: 30px;
-
-  font-weight: 700;
 }
 
 .rules__form {
-  display: flex;
   align-items: center;
+  display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
 .rules__input {
-  height: 50px;
-  margin-bottom: 50px;
-
-  text-align: center;
-
-  border: 3px solid transparent;
   border-radius: 5px;
-
+  border: 3px solid transparent;
   font-family: $main-font;
   font-size: 22px;
   font-weight: bold;
+  height: 50px;
   line-height: 30px;
+  margin-bottom: 50px;
+  text-align: center;
 
   &:hover {
     border-color: #e2a0a1;
@@ -67,20 +63,17 @@
 }
 
 .rules__button {
-  width: 90px;
-  height: 90px;
-
-  cursor: pointer;
-
-  color: #ffffff;
-  border-width: 0;
-  border-radius: 45px;
   background-color: $link-hover-color;
-
+  border-radius: 45px;
+  border-width: 0;
+  color: #ffffff;
+  cursor: pointer;
   font-family: $main-font;
   font-size: 30px;
   font-weight: bold;
+  height: 90px;
   line-height: 60px;
+  width: 90px;
 
   &:enabled:hover,
   &:enabled:focus {

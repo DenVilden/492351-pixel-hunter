@@ -4,12 +4,11 @@
  */
 
 .top {
-  width: 71px;
+  background: transparent;
+  border: none;
   height: 79px;
   padding: 0;
-
-  border: none;
-  background: transparent;
+  width: 71px;
 
   &:hover,
   &:focus {

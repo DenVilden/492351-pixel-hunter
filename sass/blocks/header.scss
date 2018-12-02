@@ -6,11 +6,10 @@
 @import "../variables/colors";
 
 .header {
-  display: flex;
   align-items: flex-start;
-  justify-content: space-between;
-
+  display: flex;
   height: 100px;
+  justify-content: space-between;
 }
 
 .back {
@@ -31,25 +30,23 @@
 }
 
 .tab {
-  width: 130px;
+  background-color: rgba(0, 0, 0, 0.1);
+  border: none;
+  font-size: 22px;
   height: 40px;
   margin: 0;
   padding: 0;
-
-  border: none;
-  background-color: rgba(0, 0, 0, 0.1);
-
-  font-size: 22px;
+  width: 130px;
 
   &:hover,
   &:focus {
-    color: $main-black-color;
     background-color: rgba(0, 0, 0, 0.3);
+    color: $main-black-color;
   }
 
   &:active,
   &--active {
-    color: white;
     background-color: $main-black-color;
+    color: white;
   }
 }

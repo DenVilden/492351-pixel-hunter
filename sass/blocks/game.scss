@@ -6,24 +6,23 @@
 @import "../mixins/text";
 
 .game {
-  display: flex;
   align-items: center;
+  display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
 .game__timer {
+  @include bold-text;
+
   font-size: 60px;
   line-height: 45px;
-
-  @include bold-text;
 }
 
 .game__task {
-  margin: 20px 0;
-
   font-size: 22px;
   line-height: 35px;
+  margin: 20px 0;
 }
 
 .game__content {
@@ -31,41 +30,32 @@
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: space-between;
-
   margin-bottom: 20px;
 }
 
 .game__option {
-  position: relative;
-
-  width: 468px;
+  border: 10px solid transparent;
+  font-size: 0;
   height: 458px;
-
+  position: relative;
   text-align: center;
   vertical-align: middle;
-
-  border: 10px solid transparent;
-
-  font-size: 0;
+  width: 468px;
 }
 
 .game__answer {
-  position: absolute;
   bottom: 30px;
-
-  width: 78px;
-  height: 78px;
-
   font-size: 0;
+  height: 78px;
+  position: absolute;
+  width: 78px;
 
   & span {
-    display: block;
-
-    width: 100%;
-    height: 100%;
-
-    border-radius: 70px;
     background: rgba(0, 0, 0, 0.5) no-repeat center;
+    border-radius: 70px;
+    display: block;
+    height: 100%;
+    width: 100%;
 
     &:hover {
       background-color: $main-black-color;
@@ -99,8 +89,8 @@
 
 .game__content--wide {
   .game__option {
-    width: 705px;
     height: 455px;
+    width: 705px;
   }
 
   .game__answer {
@@ -117,8 +107,8 @@
 }
 
 .game__content--triple .game__option {
-  width: 304px;
   height: 455px;
+  width: 304px;
 
   cursor: pointer;
 

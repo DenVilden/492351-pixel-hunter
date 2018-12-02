@@ -6,16 +6,16 @@
 @import "../mixins/general";
 
 .stats {
-  display: flex;
-  align-items: center;
-
   @include list-unstyled;
+
+  align-items: center;
+  display: flex;
 }
 
 .stats__result {
-  width: 32px;
   height: 32px;
   margin: 5px;
+  width: 32px;
 
   &--unknown {
     background: url("../img/result-unknown.svg") no-repeat center;

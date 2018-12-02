@@ -2,7 +2,7 @@ const gameData = {
   initialState: {
     level: 0,
     lives: 3,
-    time: 10,
+    time: 30,
     answers: []
   },
 
