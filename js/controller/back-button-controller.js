@@ -1,5 +1,5 @@
-import Router from "../router";
-import BackButtonView from "../view/back-button-view";
+import Router from '../router';
+import BackButtonView from '../view/back-button-view';
 
 export default class BackButtonController {
   constructor() {
