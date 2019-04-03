@@ -14,6 +14,8 @@ const rollup = require(`gulp-better-rollup`);
 const sourcemaps = require(`gulp-sourcemaps`);
 const mocha = require(`gulp-mocha`);
 const commonjs = require(`rollup-plugin-commonjs`);
+const resolve = require('rollup-plugin-node-resolve');
+const babel = require('rollup-plugin-babel');
 
 gulp.task(`style`, () => {
   return gulp
@@ -57,7 +59,22 @@ gulp.task(`scripts`, () => {
     .src(`js/main.js`)
     .pipe(plumber())
     .pipe(sourcemaps.init())
-    .pipe(rollup(`iife`))
+    .pipe(
+      rollup(
+        {
+          plugins: [
+            resolve(),
+            commonjs(),
+            babel({
+              babelrc: false,
+              exclude: `node_modules/**`,
+              presets: [`@babel/env`]
+            })
+          ]
+        },
+        `iife`
+      )
+    )
     .pipe(sourcemaps.write())
     .pipe(gulp.dest(`build/js`));
 });
