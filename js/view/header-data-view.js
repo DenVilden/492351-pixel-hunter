@@ -16,13 +16,13 @@ export default class HeaderDataView extends AbstractView {
         <div class="game__lives">
           ${new Array(gameData.initialState.lives - this.state.lives)
             .fill(
-              `<img src="../img/heart__empty.svg" class="game__heart"
+              `<img src="img/heart__empty.svg" class="game__heart"
           alt=" Missed Life" width="31" height="27">`
             )
             .join(``)}
           ${new Array(this.state.lives)
             .fill(
-              `<img src="../img/heart__full.svg" class="game__heart"
+              `<img src="img/heart__full.svg" class="game__heart"
           alt="Life" width="31" height="27">`
             )
             .join(``)}
